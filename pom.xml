@@ -1,23 +1,19 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<groupId>nz.ac.auckland.groupapps.parent</groupId>
 		<artifactId>parent-java-groupapps-central</artifactId>
 		<version>1.3</version>
 	</parent>
-
 	<artifactId>parent-groovy-groupapps-central</artifactId>
 	<version>1.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
 	<name>University of Auckland Group Apps - Groovy Parent</name>
 	<description>Maven Parent for Group Apps Groovy Artifacts that will be going into Maven Central.</description>
-
 	<properties>
 		<sonar.language>groovy</sonar.language>
 	</properties>
-
 	<scm>
 		<connection>scm:git:git@github.com:uoa-group-applications/parent-groovy-groupapps-central.git</connection>
 		<developerConnection>
@@ -26,42 +22,32 @@
 		<url>git@github.com:uoa-group-applications/parent-groovy-groupapps-central.git</url>
 		<tag>HEAD</tag>
 	</scm>
-
 	<build>
 		<plugins>
-
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<compilerId>groovy-eclipse-compiler</compilerId>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
-				<dependencies>
-
-					<dependency>
-						<groupId>org.codehaus.groovy</groupId>
-						<artifactId>groovy-eclipse-compiler</artifactId>
-						<version>2.8.0-01</version>
-					</dependency>
-
-					<dependency>
-						<!-- force a newer version of Groovy -->
-						<groupId>org.codehaus.groovy</groupId>
-						<artifactId>groovy-eclipse-batch</artifactId>
-						<version>2.1.8-01</version>
-					</dependency>
-
-				</dependencies>
+				<groupId>org.codehaus.gmavenplus</groupId>
+				<artifactId>gmavenplus-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>addSources</goal>
+							<goal>addTestSources</goal>
+							<goal>generateStubs</goal>
+							<goal>compile</goal>
+							<goal>testGenerateStubs</goal>
+							<goal>testCompile</goal>
+							<goal>removeStubs</goal>
+							<goal>removeTestStubs</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<version>1.5</version>
 				<executions>
-
 					<execution>
 						<id>add-source</id>
 						<phase>generate-sources</phase>
@@ -74,7 +60,6 @@
 							</sources>
 						</configuration>
 					</execution>
-
 					<execution>
 						<id>add-test-source</id>
 						<phase>generate-test-sources</phase>
@@ -87,10 +72,8 @@
 							</sources>
 						</configuration>
 					</execution>
-
 				</executions>
 			</plugin>
-
 		</plugins>
 	</build>
 </project>
